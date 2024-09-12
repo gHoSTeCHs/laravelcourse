@@ -10,8 +10,7 @@ class Jobs extends Model
     use HasFactory;
 
     protected $table = 'job_listings';
-    protected $fillable = ['career', 'salary'];
-
+    protected $guarded = [];
 
     public function employer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

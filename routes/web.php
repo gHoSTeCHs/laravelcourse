@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Models\Jobs;
 
@@ -10,16 +9,34 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    $jobs = Jobs::with('employer')->cursorPaginate(10);
-    return view('jobs', [
+    $jobs = Jobs::with('employer')->latest()->cursorPaginate(10);
+    return view('jobs.index', [
         'jobs' => $jobs
     ]);
 });
 
+Route::post('/jobs', function () {
+    request()->validate([
+        'title' => ['required','min:3'],
+        'salary' => ['required'],
+    ]);
+
+    Jobs::create([
+        'career' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1
+    ]);
+
+    return redirect('/jobs');
+});
+
+Route::get('/create', function () {
+    return view('jobs.create');
+});
+
 Route::get('/jobs/{id}', function ($id) {
-    $jobs = Jobs::all();
     $job = Jobs::find($id);
-    return view('job', ['job' => $job]);
+    return view('jobs.show', ['job' => $job]);
 });
 
 Route::get('/contact', function () {
