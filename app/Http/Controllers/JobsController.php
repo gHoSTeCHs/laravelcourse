@@ -53,14 +53,12 @@ class JobsController extends Controller
 
     public function update(Jobs $job): Application|Redirector|RedirectResponse
     {
-        // validate fields
+
         request()->validate([
             'title' => ['required', 'min:3'],
             'salary' => ['required'],
         ]);
-        // fetch job from db
 
-        // Update job
         $job->update([
             "career" => request('title'),
             'salary' => request('salary')
