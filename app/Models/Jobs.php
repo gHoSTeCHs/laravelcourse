@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * @method static findOrFail($id)
+ * @method static create(array $array)
+ */
 class Jobs extends Model
 {
     use HasFactory;
