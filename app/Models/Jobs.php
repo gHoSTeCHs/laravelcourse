@@ -13,6 +13,7 @@ class Jobs extends Model
 {
     use HasFactory;
 
+    public mixed $id;
     protected $table = 'job_listings';
     protected $guarded = [];
 

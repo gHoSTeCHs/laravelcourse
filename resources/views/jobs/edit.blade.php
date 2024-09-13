@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:heading> Edit: {{$job->career}}</x-slot:heading>
-    <form method="POST" action="/jobs/{{$job->id}}">
+    <form method="POST" action="/jobs/{{$job['id']}}">
         @csrf
         @method('PATCH')
         <div class="space-y-12">
@@ -70,7 +70,7 @@
         </div>
     </form>
 
-    <form method="POST" action="/jobs/{{$job->id}}" id="delete_job">
+    <form method="POST" action="/jobs/{{$job['id']}}" id="delete_job">
         @csrf
         @method('DElETE')
     </form>
