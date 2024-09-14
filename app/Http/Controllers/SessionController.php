@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
-use JetBrains\PhpStorm\NoReturn;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
@@ -15,8 +17,31 @@ class SessionController extends Controller
     {
         return view('auth.login');
     }
-    #[NoReturn] public function store(): void
+
+    /**
+     * @throws ValidationException
+     */
+    public function store(): Application|Redirector|RedirectResponse
     {
-        dd(request()->all());
+        $attributes = request()->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+
+        if (! Auth::attempt($attributes)){
+            throw ValidationException::withMessages([
+                'email' => 'Sorry, those credentials do not match'
+            ]);
+        }
+
+        request()->session()->regenerate();
+
+        return redirect('/jobs');
+    }
+
+    public function destroy(): Application|Redirector|RedirectResponse
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }
