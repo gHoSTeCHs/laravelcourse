@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @method static findOrFail($id)
  * @method static create(array $array)
+ * @property mixed $employer
  */
 class Jobs extends Model
 {

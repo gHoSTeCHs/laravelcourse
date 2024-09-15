@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
+                    <div class=" flex items-center">
                         @guest
                             <x-nav-link href="/login" :active="request()->Is('login')">Login</x-nav-link>
                             <x-nav-link href="/register" :active="request()->Is('register')">Register</x-nav-link>

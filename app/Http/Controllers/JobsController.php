@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jobs;
+use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 
 class JobsController extends Controller
@@ -46,7 +49,7 @@ class JobsController extends Controller
         return view('jobs.show', ['job' => $job]);
     }
 
-    public function edit(Jobs $job): Factory|View|Application
+    public function edit(Jobs $job): Application|Factory|View|Redirector|RedirectResponse
     {
         return view('jobs.edit', ['job' => $job]);
     }
