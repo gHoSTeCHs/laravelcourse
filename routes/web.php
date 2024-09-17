@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home');
 Route::view('contact', 'contact');
 
+
 Route::get('/jobs', [JobsController::class, 'index']);
 Route::get('/jobs/create', [JobsController::class, 'create']);
 Route::post('/jobs', [JobsController::class, 'store'])->middleware('auth');
