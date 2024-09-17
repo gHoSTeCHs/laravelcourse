@@ -4,10 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>Laravel</title>
-
+    @vite(['resources/js/app.js','resources/css/app.css'])
 </head>
 
 <body class="h-full">
@@ -23,7 +21,6 @@
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <x-nav-link href="/" :active="request()->Is('/')">Home</x-nav-link>
                             <x-nav-link href='/jobs' :active="request()->Is('jobs')">Jobs</x-nav-link>
                             <x-nav-link href='/contact' :active="request()->Is('contact')">Contact</x-nav-link>
@@ -43,7 +40,6 @@
                                 @csrf
                                 <x-form-button>Logout</x-form-button>
                             </form>
-
                         @endauth
                     </div>
                 </div>
