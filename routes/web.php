@@ -3,11 +3,16 @@
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Jobs\TranslateJob;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 Route::view('contact', 'contact');
 
+Route::get('/test', function () {
+    TranslateJob::dispatch();
+    return 'Done';
+});
 
 Route::get('/jobs', [JobsController::class, 'index']);
 Route::get('/jobs/create', [JobsController::class, 'create']);
